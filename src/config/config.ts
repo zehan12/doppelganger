@@ -13,6 +13,7 @@ const envSchema = Joi.object()
       .required(),
     PORT: Joi.number().default(3000),
     MONGODB_URL: Joi.string().required().description("Mongo DB url"),
+    MONGODB_PASSWORD: Joi.string().required(),
   })
   .unknown();
 
@@ -29,5 +30,6 @@ export const config = {
   port: envVars.PORT,
   mongoose: {
     url: envVars.MONGODB_URL + (envVars.NODE_ENV === "test" ? "-test" : ""),
+    password: envVars.MONGODB_PASSWORD,
   },
 };
