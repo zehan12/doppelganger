@@ -1,4 +1,5 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express, Request, Response, Router } from "express";
+import routes from "./routes";
 
 const app: Express = express();
 
@@ -6,12 +7,10 @@ const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api", routes);
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello from backend");
-});
-
-app.get("/api", (req: Request, res: Response) => {
-  res.send("api");
 });
 
 export default app;
